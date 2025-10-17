@@ -120,7 +120,7 @@ CATATAN:
 }
 
 // Fungsi untuk menghapus file dengan konfirmasi (async)
-async function hapusFile() {
+function hapusFile() {
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -141,7 +141,7 @@ async function hapusFile() {
             console.log(
               `\n✓ File "${path.basename(filePath)}" telah berhasil dihapus!`
             );
-          } catch (error) {
+          } catch {
             console.log(
               `\n✗ File "${path.basename(filePath)}" tidak ditemukan.`
             );
