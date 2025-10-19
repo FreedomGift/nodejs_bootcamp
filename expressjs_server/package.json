@@ -1,0 +1,20 @@
+{
+  "name": "expressjs_server",
+  "version": "1.0.0",
+  "description": "my first express project",
+  "license": "ISC",
+  "author": "Andreas",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "API",
+    "ExpressJS",
+    "Database"
+  ],
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
