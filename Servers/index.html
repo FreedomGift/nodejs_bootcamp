@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Processor</title>
+</head>
+<body>
+  <h1>URL Processor</h1>
+  <form id="url-form">
+    <label for="url-input">Enter URL:</label>
+    <input type="text" id="url-input" name="url" required>
+    <button type="submit">Process URL</button>
+  </form>
+  <hr>
+  <h2>Result:</h2>
+  <iframe id="result-frame" width="100%" height="500px" style="border: 1px solid black;"></iframe>
+  <script>
+    const form = document.getElementById('url-form');
+    const urlInput = document.getElementById('url-input');
+    const resultFrame = document.getElementById('result-frame');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const url = urlInput.value;
+
+      try {
+        const response = await fetch('/api/process-url', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ url })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          resultFrame.srcdoc = data.content;
+        } else {
+          const error = await response.json();
+          resultFrame.srcdoc = `<h1>Error: ${error.message}</h1>`;
+        }
+      } catch (error) {
+        resultFrame.srcdoc = `<h1>Error: ${error.message}</h1>`;
+      }
+    });
+  </script>
+</body>
+</html>
