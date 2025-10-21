@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   res.json({ message: 'Hello, World!', author: "Andreas" }, 200);
 });
 //!Start server
