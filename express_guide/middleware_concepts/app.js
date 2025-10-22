@@ -40,7 +40,7 @@ app.post('/data', (req, res) => {
 });
 
 // Route to test error handling
-app.get('/error', (req, res, next) => {
+app.get('/error', (_req, _res, next) => {
   // Simulate an error
   const err = new Error('This is a simulated error!');
   err.status = 500;
@@ -51,13 +51,13 @@ app.get('/error', (req, res, next) => {
 
 // 404 Not Found Handler
 // This middleware is triggered when no other route matches
-app.use((req, res, next) => {
+app.use((_req, res, _next) => {
   res.status(404).send("Sorry, can't find that!");
 });
 
 // General Error Handler
 // This middleware is triggered when `next(err)` is called
-app.use((err, req, res, next) => {
+app.use((err, _req, res, _next) => {
   console.error(err.stack);
   res.status(err.status || 500).send('Something broke!');
 });
