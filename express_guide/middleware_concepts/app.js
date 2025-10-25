@@ -1,67 +1,53 @@
 const express = require('express');
+const logger = require('morgan');
+const cors = require('cors');
+
 const app = express();
 const port = 3000;
 
-// Middleware to parse JSON bodies
-app.use(express.json());
+// Type of middleware
+// ---------------------------------
+// 1. Built-in Middleware
+// 2. Third-party Middleware
+// 3. Custom Middleware
+// 4. Application-level Middleware
+// Built-in Middleware
+app.use(express.json()); // Built-in middleware to parse JSON bodies
+app.use(express.static('public')); // Built-in middleware to serve static files
+// Third-party Middleware
+app.use(logger('dev')); // Third-party middleware for logging
+app.use(cors()); // Third-party middleware to enable CORS
 
-// Middleware to log requests
+// Custom middleware to add request time
 app.use((req, _res, next) => {
-  console.log(`${req.method} ${req.url}`);
+  console.log(`Custom Logger : ${req.method} - ${req.url}`);
+  req.requestTime = new Date();
   next();
 });
+// Application-level Middleware
+app.get('/admin', (_req, _res, _next) => {
+  console.log("Checking Admin Access");
+  // You could add authentication logic here
+  _next();
 
-// --- ROUTES ---
-
-// Sample route
-app.get('/', (_req, res) => {
-  res.send('Welcome to the Home Page!');
+}, (_req, _res) => {
+  _res.json({ message: "Welcome to the Admin Page!" });
+})
+// Router Level Middleware
+const userRouter = express.Router();
+userRouter.use((_req, _res, _next) => {
+  console.log("User router middleware called");
+  _next();
+})
+userRouter.get('/profile', (_req, res, next) => {
+  res.json({message: 'User Profile'});
+  next();
 });
-
-app.get("/about", (_req, res) => {
-  res.send("About Page");
-});
-
-// Route with parameters
-app.get('/users/:id', (req, res) => {
-  const { id } = req.params;
-  // For a real app, you would fetch user data from a database here
-  res.send(`User Profile Page for User ID: ${id}`);
-});
-
-// POST route to handle data
-app.post('/data', (req, res) => {
-  const { body } = req;
-  console.log('Received data:', body);
-  if (!body || Object.keys(body).length === 0) {
-    return res.status(400).json({ message: 'No data provided.' });
-  }
-  res.status(201).json({ message: 'Data received successfully', data: body });
-});
-
-// Route to test error handling
-app.get('/error', (_req, _res, next) => {
-  // Simulate an error
-  const err = new Error('This is a simulated error!');
-  err.status = 500;
-  next(err);
-});
-
-// --- ERROR HANDLING MIDDLEWARE ---
-
-// 404 Not Found Handler
-// This middleware is triggered when no other route matches
-app.use((_req, res, _next) => {
-  res.status(404).send("Sorry, can't find that!");
-});
-
-// General Error Handler
-// This middleware is triggered when `next(err)` is called
-app.use((err, _req, res, _next) => {
-  console.error(err.stack);
-  res.status(err.status || 500).send('Something broke!');
-});
-
+app.get('/about', (_req, res) => {
+  console.log("Request Time:", _req.requestTime);
+  res.json({ message: "Welcome to the About Page!" });
+} );
+app.use('/', userRouter);
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
