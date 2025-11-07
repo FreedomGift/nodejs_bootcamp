@@ -1,0 +1,145 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+dl,
+dd,
+ol,
+ul,
+figure,
+figcaption,
+hr,
+fieldset,
+legend {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased; /* Improve font rendering */
+}
+
+/* Make images easier to work with */
+img,
+picture,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and scroll-behavior for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+body {
+  background-color: #f0f0f0;
+  font-family: sans-serif;
+  margin: 2rem auto;
+  max-width: 90%;
+  padding: 2rem;
+}
+.title {
+  color: #333;
+  text-align: center;
+}
+p{
+  margin-top: 2rem;
+}
+nav {
+  background-color: #333;
+  padding: 1rem;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0 1rem;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+.services{
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+.list_services li {
+  margin-top: 1rem;
+}
+
+.user_info {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+}
+
+.user_info p {
+  margin: 0.5rem 0;
+}
+
+.account_details {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+  list-style: none;
+}
+
+.account_details p {
+  margin: 0.5rem 0;
+}
+

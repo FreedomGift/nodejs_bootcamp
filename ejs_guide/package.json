@@ -1,0 +1,21 @@
+{
+  "name": "ejs_guide",
+  "version": "1.0.0",
+  "description": "EJS guide",
+  "keywords": [
+    "EJS",
+    "NodeJS"
+  ],
+  "license": "ISC",
+  "author": "Andreas",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
+  }
+}

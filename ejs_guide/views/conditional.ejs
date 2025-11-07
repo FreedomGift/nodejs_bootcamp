@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><%= title %></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <h1 class="title">Simple If-Else Statement</h1>
+    <% if(user.isLoggedIn) { %>
+      <p>Welcome back, valued user!</p>
+    <% } else { %>
+      <p>Please log in to access your account.</p>
+    <% } %>
+    <h2>Simple Ternary Statement</h2>
+    // Using ternary operator to check admin status
+    <p><strong>Admin Status:</strong> <%= user.isAdmin ? 'You have admin privileges.' : 'You are a regular user.' %></p>
+    <h2>Logical AND Operator</h2>
+    // Using logical AND to check if user has items
+    <% if(user.hasItems) { %>
+      <p>You have items in your cart.</p>
+    <% } else { %>
+      <p>No items in your cart.</p>
+    <% } %>
+
+
+    <script src="" async defer></script>
+  </body>
+</html>
